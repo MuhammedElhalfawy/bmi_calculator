@@ -293,6 +293,27 @@ class _BmiScreenState extends State<BmiScreen> {
                 onPressed: (){
                   double result = weight / pow(height / 100, 2);
                   print(result.round());
+
+                  String getResult() {
+                    if (result >= 25) {
+                      return 'OverWeight';
+                    } else if (result > 18) {
+                      return 'Normal';
+                    } else {
+                      return 'UnderWeight';
+                    }
+                  }
+
+                  String comment() {
+                    if (result >= 25) {
+                      return 'You have a higher than normal body weight.';
+                    } else if (result > 18) {
+                      return 'You have a normal body weight. Excellent';
+                    } else {
+                      return 'You have a lower than normal body weight.';
+                    }
+                  }
+
                   Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -300,6 +321,8 @@ class _BmiScreenState extends State<BmiScreen> {
                             age: age,
                             isMale: isMale,
                             result: result.round(),
+                            getResult: getResult(),
+                            comment: comment(),
                           ),
                       ),
                   );
